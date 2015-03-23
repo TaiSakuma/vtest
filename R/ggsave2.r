@@ -3,7 +3,7 @@
 # with the namespace when loading and testing ggplot2. Perhaps there is a better
 # solution?
 ggsave2 <- function(filename=default_name(plot), plot = last_plot(), device=default_device(filename), path = NULL, scale=1, width=par("din")[1], height=par("din")[2], units=c("in", "cm", "mm"), dpi=300, ...) {
-  if (!inherits(plot, "ggplot")) stop("plot should be a ggplot2 plot")
+  ## if (!inherits(plot, "ggplot")) stop("plot should be a ggplot2 plot")
 
   eps <- ps <- function(..., width, height)  
     grDevices::postscript(..., width=width, height=height, onefile=FALSE,
