@@ -17,7 +17,7 @@
 #'   results of tests in two different commits.
 #' @export
 vtest_webpage <- function(ref = "", pkg = ".", filter = "", convertpng = TRUE,
-      prompt = TRUE) {
+      prompt = FALSE, openURL = FALSE) {
   init_vtest(pkg)
 
   if (!file.exists(get_vtest_htmldir()))
@@ -51,7 +51,7 @@ vtest_webpage <- function(ref = "", pkg = ".", filter = "", convertpng = TRUE,
       make_vtest_contextpage(ti, get_vtest_htmldir(), imagedir, reftext, commit, convertpng)
   })
 
-  if (prompt && confirm("Open webpage in browser? (y/n) "))
+  if (openURL || prompt && confirm("Open webpage in browser? (y/n) "))
     browseURL(indexpage)
 
   invisible()

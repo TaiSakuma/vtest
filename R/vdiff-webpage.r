@@ -28,7 +28,7 @@
 #'   a single commit.
 #' @export
 vdiff_webpage <- function(ref1 = "HEAD", ref2 = "", pkg = ".", filter = "",
-      convertpng = TRUE, method = "ghostscript", prompt = TRUE) {
+      convertpng = TRUE, method = "ghostscript", prompt = FALSE, openURL = FALSE) {
   # TODO: message about weird color space in conversion using convert
   # TODO: print message about png option, and slow png vs safari-only pdf
   init_vtest(pkg)
@@ -78,8 +78,9 @@ vdiff_webpage <- function(ref1 = "HEAD", ref2 = "", pkg = ".", filter = "",
                            convertpng, method = method)
   }
 
-  if (prompt && confirm("Open webpage in browser? (y/n) "))
+  if (openURL || prompt && confirm("Open webpage in browser? (y/n) "))
     browseURL(indexpage)
+
 
   invisible()
 }
