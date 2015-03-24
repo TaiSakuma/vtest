@@ -13,7 +13,7 @@ vt <- new.env(hash = TRUE, parent = emptyenv())
 #'   it will be set to packagedir/visual_test/vtest/.
 #'
 #' @export
-init_vtest <- function(pkg = ".", testdir = NULL, resultdir = NULL) {
+init_vtest <- function(pkg = ".", testdir = NULL, resultdir = NULL, prompt = FALSE) {
 
   # Close context, if open
   if (!is.null(get_vcontext())) set_vcontext(NULL)
@@ -40,7 +40,7 @@ init_vtest <- function(pkg = ".", testdir = NULL, resultdir = NULL) {
 
   # Make directories for storing results
   if (!file.exists(get_vtest_resultdir())) {
-    if (!confirm(paste(get_vtest_resultdir(), "does not exist! Create? (y/n) ")))
+    if (prompt && !confirm(paste(get_vtest_resultdir(), "does not exist! Create? (y/n) ")))
       stop("Cannot continue without creating directory for results")
     dir.create(get_vtest_resultdir(), recursive = TRUE, showWarnings = FALSE)
 

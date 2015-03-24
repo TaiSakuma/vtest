@@ -15,11 +15,11 @@ NULL
 #' @param showhelp if \code{TRUE}, print helpful messages.
 #'
 #' @export
-vtest <- function(pkg = ".", filter = "", showhelp = TRUE) {
+vtest <- function(pkg = ".", filter = "", showhelp = TRUE, prompt = FALSE) {
   pkg <- as.package(pkg)
   load_all(pkg, reset = TRUE)
 
-  init_vtest(pkg)
+  init_vtest(pkg, prompt = prompt)
   reset_lasttest()
 
   if (!file.exists(get_vtest_testdir()))
@@ -44,7 +44,7 @@ vtest <- function(pkg = ".", filter = "", showhelp = TRUE) {
             get_vtest_lasttest_resultset_file(), row.names = FALSE)
 
   if (filter == "")
-    save_last_resultset()
+    save_last_resultset(prompt = prompt)
   else
     message("Did not run the entire set of tests, so the results can't be added to the database.")
 
